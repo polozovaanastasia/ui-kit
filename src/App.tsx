@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Button } from "./components/Button/button";
+import caretIcon from "../src/assets/icons/CaretCircleRight.png";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="app">
+            <div className="row">
+                <Button label="Primary" variant="primary" type="text" />
+            </div>
+            <div className="row">
+                <Button
+                    label="Primary"
+                    variant="primary"
+                    type="iconText"
+                    iconUrl={caretIcon}
+                />
+            </div>
+            <div className="row">
+                <Button variant="primary" type="icon" iconUrl={caretIcon} />
+            </div>
+            <div className="row">
+                <Button
+                    label="Primary"
+                    variant="primary"
+                    type="text"
+                    disabled={true}
+                />
+            </div>
+
+            <Button label="Secondary" variant="secondary" type="text" />
+            <Button label="Outline" variant="outline" type="text" />
+            <Button label="Text" variant="text" type="text" />
+        </div>
+    );
 }
 
 export default App;

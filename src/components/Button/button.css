@@ -1,0 +1,68 @@
+.button {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.button-primary,
+.button-secondary,
+.button-outline {
+    border-radius: 4px;
+}
+
+.button-primary {
+    background-color: #5e47d3;
+    color: #ffffff;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+.button-primary:hover {
+    background-color: #694df9;
+    box-shadow: none;
+}
+
+.button-primary:active {
+    background-color: #220F80;
+}
+
+.button-primary:focus {
+    box-shadow: 0 0 0 2px #E2DCFF;
+}
+
+.button-text,
+.button-iconText {
+    padding: 8px 16px;
+}
+
+.button-iconText .button_label {
+    margin-right: 2px;
+}
+
+.button_icon {
+    display: flex;
+    width: 16px;
+    height: 16px;
+}
+
+.button-icon {
+    padding: 8px;
+}
+
+.button-disabled {
+    color: #C2C2C2;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+.button-disabled.button-primary,
+.button-disabled.button-secondary {
+    background-color: #F5F5F5;
+}
+
+.button-disabled.button-outline {
+    background-color: #E0E0E0;
+}

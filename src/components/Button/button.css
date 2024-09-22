@@ -23,11 +23,13 @@
 
 .button:focus {
     box-shadow: 0 0 0 2px var(--focus-color);
+    outline: none;
 }
 
 .button-primary,
 .button-secondary,
-.button-outline {
+.button-outline,
+.button-link {
     border-radius: 4px;
 }
 
@@ -78,6 +80,19 @@
     color: var(--active-color);
 }
 
+.button-link {
+    background-color: transparent;
+    color: var(--main-color);
+}
+
+.button-link:hover {
+    color: var(--hover-color);
+}
+
+.button-link:active {
+    color: var(--active-color);
+}
+
 .button-text,
 .button-iconText {
     padding: 8px 16px;
@@ -111,4 +126,8 @@
 
 .button-disabled.button-outline {
     border-color: var(--disabled-border-color);
+}
+
+.button-disabled.button-link {
+    color: var(--disabled-text-color);
 }

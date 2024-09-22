@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import "./button.css";
 
-type ButtonVariantValuesType = "primary" | "secondary" | "outline" | "text";
+type ButtonVariantValuesType = "primary" | "secondary" | "outline" | "link";
 type ButtonTypeValuesType = "text" | "iconText" | "icon";
 
 type BaseButtonPropsType = {
@@ -34,7 +34,7 @@ export const Button = (props: ButtonPropsType) => {
     );
 
     return (
-        <button className={buttonClass}>
+        <button className={buttonClass} disabled={props.disabled}>
             <span className="button_label">{props.label}</span>
             {props.type === "icon" || props.type === "iconText" ? (
                 <span className="button_icon">{props.icon}</span>

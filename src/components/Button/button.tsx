@@ -14,15 +14,15 @@ type BaseButtonPropsType = {
 type ButtonPropsType =
     | (BaseButtonPropsType & {
           type: "text";
-          iconUrl?: never;
+          icon?: never;
       })
     | (BaseButtonPropsType & {
           type: "iconText";
-          iconUrl: string;
+          icon: JSX.Element;
       })
     | (BaseButtonPropsType & {
           type: "icon";
-          iconUrl: string;
+          icon: JSX.Element;
       });
 
 export const Button = (props: ButtonPropsType) => {
@@ -37,9 +37,7 @@ export const Button = (props: ButtonPropsType) => {
         <button className={buttonClass}>
             <span className="button_label">{props.label}</span>
             {props.type === "icon" || props.type === "iconText" ? (
-                <span className="button_icon">
-                    <img src={props.iconUrl} />
-                </span>
+                <span className="button_icon">{props.icon}</span>
             ) : null}
         </button>
     );

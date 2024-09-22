@@ -1,11 +1,28 @@
+:root {
+    --main-color: #5E47D2;
+    --secondary-color: #F7F5FF;
+    --hover-color: #694DF9;
+    --active-color: #220F80;
+    --focus-color: #E2DCFF;
+    --border-color: #BCB0F5;
+    --disabled-color: #F5F5F5;
+    --disabled-border-color: #E0E0E0;
+    --disabled-text-color: #C2C2C2;
+}
+
 .button {
     display: flex;
     align-items: center;
     font-size: 14px;
     font-weight: 500;
-    border: none;
+    border: 2px solid transparent;
+    box-sizing: border-box;
     transition: 0.3s;
     cursor: pointer;
+}
+
+.button:focus {
+    box-shadow: 0 0 0 2px var(--focus-color);
 }
 
 .button-primary,
@@ -15,22 +32,50 @@
 }
 
 .button-primary {
-    background-color: #5e47d3;
+    background-color: var(--main-color);
     color: #ffffff;
     box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.3);
 }
 
 .button-primary:hover {
-    background-color: #694df9;
+    background-color: var(--hover-color);
     box-shadow: none;
 }
 
 .button-primary:active {
-    background-color: #220F80;
+    background-color: var(--active-color);
 }
 
-.button-primary:focus {
-    box-shadow: 0 0 0 2px #E2DCFF;
+.button-secondary,
+.button-outline {
+    background-color: var(--secondary-color);
+    color: var(--main-color);
+}
+
+.button-secondary:hover {
+    color: var(--hover-color);
+}
+
+.app .button-secondary:active {
+    color: var(--active-color);
+}
+
+.button-secondary:focus {
+    color: var(--main-color);
+}
+
+.button-outline {
+    border: 1px solid var(--border-color);
+
+}
+
+.button-outline:hover {
+    border-color: var(--hover-color);
+}
+
+.button-outline:active {
+    border-color: var(--active-color);
+    color: var(--active-color);
 }
 
 .button-text,
@@ -39,7 +84,7 @@
 }
 
 .button-iconText .button_label {
-    margin-right: 2px;
+    margin-right: 5px;
 }
 
 .button_icon {
@@ -53,16 +98,17 @@
 }
 
 .button-disabled {
-    color: #C2C2C2;
+    color: var(--disabled-text-color);
     box-shadow: none;
     cursor: not-allowed;
 }
 
 .button-disabled.button-primary,
-.button-disabled.button-secondary {
-    background-color: #F5F5F5;
+.button-disabled.button-secondary,
+.button-disabled.button-outline {
+    background-color: var(--disabled-color);
 }
 
 .button-disabled.button-outline {
-    background-color: #E0E0E0;
+    border-color: var(--disabled-border-color);
 }

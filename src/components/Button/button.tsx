@@ -9,6 +9,7 @@ type BaseButtonPropsType = {
     variant: ButtonVariantValuesType;
     type?: ButtonTypeValuesType;
     disabled?: boolean;
+    onClick: () => void;
 };
 
 type ButtonPropsType =
@@ -25,20 +26,27 @@ type ButtonPropsType =
           icon: JSX.Element;
       });
 
-export const Button = (props: ButtonPropsType) => {
+export const Button = ({
+    label,
+    variant,
+    type,
+    disabled,
+    icon,
+    onClick,
+}: ButtonPropsType) => {
     const buttonClass = classNames(
         "button",
-        `button-${props.variant}`,
-        `button-${props.type ? props.type : "text"}`,
-        { "button-disabled": props.disabled }
+        `button-${variant}`,
+        `button-${type ? type : "text"}`,
+        { "button-disabled": disabled }
     );
 
     return (
-        <button className={buttonClass} disabled={props.disabled}>
-            <span className="button_label">{props.label}</span>
-            {props.type === "icon" || props.type === "iconText" ? (
-                <span className="button_icon">{props.icon}</span>
-            ) : null}
+        <button className={buttonClass} disabled={disabled} onClick={onClick}>
+            <span className="button_label">{label}</span>
+            {(type === "icon" || type === "iconText") && (
+                <span className="button_icon">{icon}</span>
+            )}
         </button>
     );
 };

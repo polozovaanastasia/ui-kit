@@ -1,0 +1,67 @@
+@import url("../../assets/styles/variables.css");
+
+.checkbox {
+    font-size: 14px;
+}
+
+.checkbox-disabled .checkbox-control,
+.checkbox-disabled .checkbox-label {
+    cursor: not-allowed;
+}
+
+.checkbox-control {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-position: center;
+    transition: 0.3s;
+}
+
+.checkbox-checked .checkbox-control {
+    border: none;
+    background: var(--main-color) url("../../assets/icons/checkboxTick.png")
+        no-repeat center;
+    background-size: 14px 10px;
+}
+
+.checkbox-checked .checkbox-control:hover {
+    background-color: var(--hover-color);
+}
+
+.checkbox-checked.checkbox-disabled .checkbox-control {
+    background-color: var(--disabled-background-color);
+}
+
+.checkbox-checked .checkbox-control:focus-within {
+    background-color: var(--active-color);
+    box-shadow: 0 0 0 2px var(--focus-color);
+}
+
+.checkbox-unchecked .checkbox-control {
+    border: 1px solid var(--disabled-text-color);
+}
+
+.checkbox-unchecked .checkbox-control:hover {
+    border-color: var(--hover-color);
+}
+
+.checkbox-unchecked.checkbox-disabled .checkbox-control {
+    border-color: var(--disabled-border-color);
+}
+
+.checkbox-unchecked .checkbox-control:focus-within {
+    border-color: var(--hover-color);
+    box-shadow: 0 0 0 2px var(--focus-color);
+}
+
+.checkbox-input {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+}
+
+.checkbox label {
+    display: flex;
+    cursor: pointer;
+}

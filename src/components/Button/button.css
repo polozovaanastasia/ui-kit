@@ -1,14 +1,4 @@
-:root {
-    --main-color: #5E47D2;
-    --secondary-color: #F7F5FF;
-    --hover-color: #694DF9;
-    --active-color: #220F80;
-    --focus-color: #E2DCFF;
-    --border-color: #BCB0F5;
-    --disabled-color: #F5F5F5;
-    --disabled-border-color: #E0E0E0;
-    --disabled-text-color: #C2C2C2;
-}
+@import url('../../assets/styles/variables.css');
 
 .button {
     display: flex;

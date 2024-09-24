@@ -2,16 +2,47 @@ import "./App.css";
 import { Button } from "./components/Button/button";
 import ArrowRightIcon from "../src/icons/arrowRight";
 import { Checkbox } from "./components/Checkbox/checkbox";
+import { useCallback, useMemo, useState } from "react";
 
 const App = () => {
-    const onButtonClick = () => {
+    const arrowRightIcon = useMemo(() => <ArrowRightIcon />, []);
+
+    const [isDisabled, setIsDisabled] = useState<boolean>(false);
+    const [isChecked, setIsChecked] = useState<boolean>(false);
+    const [isIndeterminate, setIsIndeterminate] = useState<boolean>(false);
+
+    const onButtonClick = useCallback(() => {
         console.log("onButtonClick");
-    };
-    const onCheckboxChange = (isChecked: boolean) => {
+    }, []);
+
+    const onCheckboxChange = useCallback((isChecked: boolean) => {
         console.log(`Event onCheckboxChange. CheckboxIsChecked: ${isChecked}`);
-    };
+        setIsChecked(isChecked);
+    }, []);
+
+    // const changeDisabled = useCallback(() => {
+    //     setIsDisabled(!isDisabled);
+    // }, [isDisabled]);
+
+    const changeIndeterminateStatus = useCallback(() => {
+        setIsIndeterminate(!isIndeterminate);
+    }, [isIndeterminate]);
+
     return (
         <div className="app">
+            <Button
+                label="Primary"
+                variant="primary"
+                type="text"
+                onClick={changeIndeterminateStatus}
+            />
+            <Checkbox
+                label="Checkbox"
+                checked={isChecked}
+                disabled={isDisabled}
+                indeterminate={isIndeterminate}
+                onChange={onCheckboxChange}
+            />
             <div>
                 <h4>Primary</h4>
                 <div className="row">
@@ -27,7 +58,7 @@ const App = () => {
                         label="Primary"
                         variant="primary"
                         type="iconText"
-                        icon={<ArrowRightIcon />}
+                        icon={arrowRightIcon}
                         onClick={onButtonClick}
                     />
                 </div>
@@ -35,7 +66,7 @@ const App = () => {
                     <Button
                         variant="primary"
                         type="icon"
-                        icon={<ArrowRightIcon />}
+                        icon={arrowRightIcon}
                         onClick={onButtonClick}
                     />
                 </div>
@@ -55,7 +86,7 @@ const App = () => {
                         label="Primary"
                         variant="primary"
                         type="iconText"
-                        icon={<ArrowRightIcon />}
+                        icon={arrowRightIcon}
                         disabled
                         onClick={onButtonClick}
                     />
@@ -64,7 +95,7 @@ const App = () => {
                     <Button
                         variant="primary"
                         type="icon"
-                        icon={<ArrowRightIcon />}
+                        icon={arrowRightIcon}
                         disabled
                         onClick={onButtonClick}
                     />
@@ -85,7 +116,7 @@ const App = () => {
                         label="Secondary"
                         variant="secondary"
                         type="iconText"
-                        icon={<ArrowRightIcon />}
+                        icon={arrowRightIcon}
                         onClick={onButtonClick}
                     />
                 </div>
@@ -93,7 +124,7 @@ const App = () => {
                     <Button
                         variant="secondary"
                         type="icon"
-                        icon={<ArrowRightIcon />}
+                        icon={arrowRightIcon}
                         onClick={onButtonClick}
                     />
                 </div>
@@ -111,7 +142,7 @@ const App = () => {
                         label="Secondary"
                         variant="secondary"
                         type="iconText"
-                        icon={<ArrowRightIcon />}
+                        icon={arrowRightIcon}
                         disabled
                         onClick={onButtonClick}
                     />
@@ -120,7 +151,7 @@ const App = () => {
                     <Button
                         variant="secondary"
                         type="icon"
-                        icon={<ArrowRightIcon />}
+                        icon={arrowRightIcon}
                         disabled
                         onClick={onButtonClick}
                     />
@@ -141,7 +172,7 @@ const App = () => {
                         label="Outline"
                         variant="outline"
                         type="iconText"
-                        icon={<ArrowRightIcon />}
+                        icon={arrowRightIcon}
                         onClick={onButtonClick}
                     />
                 </div>
@@ -149,7 +180,7 @@ const App = () => {
                     <Button
                         variant="outline"
                         type="icon"
-                        icon={<ArrowRightIcon />}
+                        icon={arrowRightIcon}
                         onClick={onButtonClick}
                     />
                 </div>
@@ -167,7 +198,7 @@ const App = () => {
                         label="Outline"
                         variant="outline"
                         type="iconText"
-                        icon={<ArrowRightIcon />}
+                        icon={arrowRightIcon}
                         disabled
                         onClick={onButtonClick}
                     />
@@ -176,7 +207,7 @@ const App = () => {
                     <Button
                         variant="outline"
                         type="icon"
-                        icon={<ArrowRightIcon />}
+                        icon={arrowRightIcon}
                         disabled
                         onClick={onButtonClick}
                     />
@@ -197,7 +228,7 @@ const App = () => {
                         label="Link"
                         variant="link"
                         type="iconText"
-                        icon={<ArrowRightIcon />}
+                        icon={arrowRightIcon}
                         onClick={onButtonClick}
                     />
                 </div>
@@ -205,7 +236,7 @@ const App = () => {
                     <Button
                         variant="link"
                         type="icon"
-                        icon={<ArrowRightIcon />}
+                        icon={arrowRightIcon}
                         onClick={onButtonClick}
                     />
                 </div>
@@ -223,7 +254,7 @@ const App = () => {
                         label="Link"
                         variant="link"
                         type="iconText"
-                        icon={<ArrowRightIcon />}
+                        icon={arrowRightIcon}
                         disabled
                         onClick={onButtonClick}
                     />
@@ -232,7 +263,7 @@ const App = () => {
                     <Button
                         variant="link"
                         type="icon"
-                        icon={<ArrowRightIcon />}
+                        icon={arrowRightIcon}
                         disabled
                         onClick={onButtonClick}
                     />
@@ -240,6 +271,7 @@ const App = () => {
             </div>
 
             <div>
+                <h4>Checkbox</h4>
                 <div className="row">
                     <Checkbox checked={false} onChange={onCheckboxChange} />
                 </div>

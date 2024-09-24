@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { useState } from "react";
+import { memo, useEffect, useState } from "react";
 import "./checkbox.css";
 
 type CheckboxPropsType = {
@@ -10,39 +10,59 @@ type CheckboxPropsType = {
     onChange: (checked: boolean) => void;
 };
 
-export const Checkbox = ({
-    label,
-    checked,
-    indeterminate,
-    disabled,
-    onChange,
-}: CheckboxPropsType) => {
-    const [isChecked, setIsChecked] = useState<boolean>(checked);
+export const Checkbox = memo(
+    ({
+        label,
+        checked,
+        indeterminate = false,
+        disabled,
+        onChange,
+    }: CheckboxPropsType) => {
+        console.log("Checkbox rerender", checked);
+        const [isIndeterminate, setIsIndeterminate] =
+            useState<boolean>(indeterminate);
 
-    const checkboxClass = classNames(
-        "checkbox",
-        `checkbox-${isChecked ? "checked" : "unchecked"}`,
-        { "checkbox-indeterminate": indeterminate },
-        { "checkbox-disabled": disabled }
-    );
+        const checkboxClass = classNames(
+            "checkbox",
+            `checkbox-${
+                isIndeterminate
+                    ? "indeterminate"
+                    : checked
+                    ? "checked"
+                    : "unchecked"
+            }`,
+            { "checkbox-disabled": disabled }
+        );
 
-    const onChangeHandler = () => {
-        setIsChecked(!isChecked);
-        onChange(!isChecked);
-    };
-    return (
-        <div className={checkboxClass}>
-            <label>
-                <span className="checkbox-control">
-                    <input
-                        className="checkbox-input"
-                        type="checkbox"
-                        checked={isChecked}
-                        onChange={onChangeHandler}
-                    />
-                </span>
-                {label && <span className="checkbox-label">{label}</span>}
-            </label>
-        </div>
-    );
-};
+        useEffect(() => {
+            if (indeterminate) {
+                setIsIndeterminate(true);
+            } else {
+                setIsIndeterminate(false);
+            }
+        }, [indeterminate]);
+
+        const onChangeHandler = () => {
+            if (disabled) return;
+            setIsIndeterminate(false);
+            onChange(!checked);
+        };
+
+        return (
+            <div className={checkboxClass}>
+                <label>
+                    <span className="checkbox-control">
+                        <input
+                            className="checkbox-input"
+                            type="checkbox"
+                            checked={checked}
+                            disabled={disabled}
+                            onChange={onChangeHandler}
+                        />
+                    </span>
+                    {label && <span className="checkbox-label">{label}</span>}
+                </label>
+            </div>
+        );
+    }
+);

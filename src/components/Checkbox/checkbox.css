@@ -1,6 +1,7 @@
 @import url("../../assets/styles/variables.css");
 
 .checkbox {
+    display: inline-block;
     font-size: 14px;
 }
 

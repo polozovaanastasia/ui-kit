@@ -3,6 +3,7 @@ import { Button } from "./components/Button/button";
 import ArrowRightIcon from "../src/icons/arrowRight";
 import { Checkbox } from "./components/Checkbox/checkbox";
 import { useCallback, useMemo, useState } from "react";
+import { Radio } from "./components/Radio/radio";
 
 const App = () => {
     const arrowRightIcon = useMemo(() => <ArrowRightIcon />, []);
@@ -15,8 +16,7 @@ const App = () => {
         console.log("onButtonClick");
     }, []);
 
-    const onCheckboxChange = useCallback((isChecked: boolean) => {
-        console.log(`Event onCheckboxChange. CheckboxIsChecked: ${isChecked}`);
+    const onChange = useCallback((isChecked: boolean) => {
         setIsChecked(isChecked);
     }, []);
 
@@ -30,6 +30,19 @@ const App = () => {
 
     return (
         <div className="app">
+            <Radio
+                label="apples"
+                value="apples"
+                checked={isChecked}
+                groupName="Fruits"
+                onChange={onChange}
+            />
+            <Radio
+                value="oranges"
+                checked={isChecked}
+                groupName="Fruits"
+                onChange={onChange}
+            />
             <Button
                 label="Primary"
                 variant="primary"
@@ -41,7 +54,7 @@ const App = () => {
                 checked={isChecked}
                 disabled={isDisabled}
                 indeterminate={isIndeterminate}
-                onChange={onCheckboxChange}
+                onChange={onChange}
             />
             <div>
                 <h4>Primary</h4>
@@ -270,7 +283,7 @@ const App = () => {
                 </div>
             </div>
 
-            <div>
+            {/* <div>
                 <h4>Checkbox</h4>
                 <div className="row">
                     <Checkbox checked={false} onChange={onCheckboxChange} />
@@ -298,7 +311,7 @@ const App = () => {
                         disabled
                     />
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };

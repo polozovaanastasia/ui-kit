@@ -1,12 +1,12 @@
 import classNames from "classnames";
 import "./radio.css";
 
-type RadioTypes = {
+type RadioPropsTypes = {
     label?: string;
     value: string;
-    checked: boolean;
+    checked: string;
     groupName: string;
-    onChange: (isChecked: boolean) => void;
+    onChange: (value: string) => void;
 };
 
 export const Radio = ({
@@ -15,11 +15,12 @@ export const Radio = ({
     checked,
     groupName,
     onChange,
-}: RadioTypes) => {
-    const radioClass = classNames("radio", { "radio-checked": checked });
+}: RadioPropsTypes) => {
+    const isChecked = value === checked;
+    const radioClass = classNames("radio", { "radio-checked": isChecked });
 
     const onChangeHandler = () => {
-        onChange(!checked);
+        onChange(value);
     };
     return (
         <div className={radioClass}>
@@ -30,7 +31,7 @@ export const Radio = ({
                         type="radio"
                         value={value}
                         name={groupName}
-                        checked={checked}
+                        checked={isChecked}
                         onChange={onChangeHandler}
                     />
                 </span>

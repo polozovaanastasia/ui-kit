@@ -4,6 +4,7 @@ import ArrowRightIcon from "../src/icons/arrowRight";
 import { Checkbox } from "./components/Checkbox/checkbox";
 import { useCallback, useMemo, useState } from "react";
 import { Radio } from "./components/Radio/radio";
+import { RadioGroup } from "./components/Radio/radio-group";
 
 const App = () => {
     const arrowRightIcon = useMemo(() => <ArrowRightIcon />, []);
@@ -11,18 +12,31 @@ const App = () => {
     const [isDisabled, setIsDisabled] = useState<boolean>(false);
     const [isChecked, setIsChecked] = useState<boolean>(false);
     const [isIndeterminate, setIsIndeterminate] = useState<boolean>(false);
+    let [selectedValue, setSelectedValue] = useState<string>("");
+    let [selectedBerriesValue, setSelectedBerriesValue] = useState<string>("");
+
+    let fruits = [
+        { label: "Apple", value: "apple" },
+        { label: "Banana", value: "banana" },
+        { label: "Orange", value: "orange" },
+    ];
+    let berries = [
+        { label: "Blueberry", value: "blueberry" },
+        { label: "Cherry", value: "cherry" },
+        { label: "Strawberry", value: "strawberry" },
+    ];
 
     const onButtonClick = useCallback(() => {
         console.log("onButtonClick");
     }, []);
 
-    const onChange = useCallback((isChecked: boolean) => {
-        setIsChecked(isChecked);
+    const onChange = useCallback((value: string) => {
+        setSelectedValue(value);
     }, []);
 
-    // const changeDisabled = useCallback(() => {
-    //     setIsDisabled(!isDisabled);
-    // }, [isDisabled]);
+    const onChangeBerries = useCallback((value: string) => {
+        setSelectedBerriesValue(value);
+    }, []);
 
     const changeIndeterminateStatus = useCallback(() => {
         setIsIndeterminate(!isIndeterminate);
@@ -30,32 +44,44 @@ const App = () => {
 
     return (
         <div className="app">
-            <Radio
+            <RadioGroup
+                options={fruits}
+                selected={selectedValue}
+                groupName="Fruits"
+                onChange={onChange}
+            />
+            <RadioGroup
+                options={berries}
+                selected={selectedBerriesValue}
+                groupName="Berries"
+                onChange={onChangeBerries}
+            />
+            {/* <Radio
                 label="apples"
                 value="apples"
-                checked={isChecked}
+                checked={selectedValue}
                 groupName="Fruits"
                 onChange={onChange}
             />
             <Radio
                 value="oranges"
-                checked={isChecked}
+                checked={selectedValue}
                 groupName="Fruits"
                 onChange={onChange}
-            />
+            /> */}
             <Button
                 label="Primary"
                 variant="primary"
                 type="text"
                 onClick={changeIndeterminateStatus}
             />
-            <Checkbox
+            {/* <Checkbox
                 label="Checkbox"
                 checked={isChecked}
                 disabled={isDisabled}
                 indeterminate={isIndeterminate}
                 onChange={onChange}
-            />
+            /> */}
             <div>
                 <h4>Primary</h4>
                 <div className="row">

@@ -1,10 +1,11 @@
 import classNames from "classnames";
-import "./radio.css";
+import "./Radio.css";
 
 type RadioPropsTypes = {
     label?: string;
     value: string;
-    checked: string;
+    selected: string;
+    disabled: boolean;
     groupName: string;
     onChange: (value: string) => void;
 };
@@ -12,12 +13,17 @@ type RadioPropsTypes = {
 export const Radio = ({
     label,
     value,
-    checked,
+    selected,
+    disabled,
     groupName,
     onChange,
 }: RadioPropsTypes) => {
-    const isChecked = value === checked;
-    const radioClass = classNames("radio", { "radio-checked": isChecked });
+    const isSelected = value === selected;
+    const radioClass = classNames(
+        "radio",
+        { "radio-selected": isSelected },
+        { "radio-disabled": disabled }
+    );
 
     const onChangeHandler = () => {
         onChange(value);
@@ -31,7 +37,8 @@ export const Radio = ({
                         type="radio"
                         value={value}
                         name={groupName}
-                        checked={isChecked}
+                        checked={isSelected}
+                        disabled={!!disabled}
                         onChange={onChangeHandler}
                     />
                 </span>

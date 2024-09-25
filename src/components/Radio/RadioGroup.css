@@ -1,0 +1,8 @@
+.radio-group {
+    display: flex;
+    gap: 10px;
+}
+
+/* .radio-group .radio {
+    margin-right: 10px;
+} */

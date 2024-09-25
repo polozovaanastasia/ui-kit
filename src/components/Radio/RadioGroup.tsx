@@ -1,9 +1,10 @@
-import { Radio } from "./radio";
-import "./radio-group.css";
+import { Radio } from "./Radio";
+import "./RadioGroup.css";
 
 type OptionType = {
     label?: string;
     value: string;
+    disabled?: boolean;
 };
 
 type RadioGroupPropsType = {
@@ -19,10 +20,15 @@ export const RadioGroup = ({
     groupName,
     onChange,
 }: RadioGroupPropsType) => {
+    const isSelectedDisabled = options.some(
+        (option) => option.value === selected && option.disabled
+    );
+
     return (
         <div className="radio-group">
-            {options.map(({ label, value }) => {
+            {options.map(({ label, value, disabled }) => {
                 const onChangeHandler = () => {
+                    if (isSelectedDisabled) return;
                     onChange(value);
                 };
                 return (
@@ -30,7 +36,8 @@ export const RadioGroup = ({
                         key={value}
                         label={label}
                         value={value}
-                        checked={selected}
+                        selected={selected}
+                        disabled={!!disabled}
                         groupName={groupName}
                         onChange={onChangeHandler}
                     />

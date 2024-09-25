@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { memo, useEffect, useState } from "react";
-import "./checkbox.css";
+import "./Checkbox.css";
 
 type CheckboxPropsType = {
     label?: string;

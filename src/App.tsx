@@ -1,24 +1,24 @@
 import "./App.css";
-import { Button } from "./components/Button/button";
-import ArrowRightIcon from "../src/icons/arrowRight";
-import { Checkbox } from "./components/Checkbox/checkbox";
 import { useCallback, useMemo, useState } from "react";
-import { Radio } from "./components/Radio/radio";
-import { RadioGroup } from "./components/Radio/radio-group";
+import { Button } from "./components/Button/Button";
+import { Checkbox } from "./components/Checkbox/Checkbox";
+import { RadioGroup } from "./components/Radio/RadioGroup";
+import ArrowRightIcon from "../src/icons/arrowRight";
 
 const App = () => {
     const arrowRightIcon = useMemo(() => <ArrowRightIcon />, []);
 
-    const [isDisabled, setIsDisabled] = useState<boolean>(false);
+    // const [isDisabled, setIsDisabled] = useState<boolean>(false);
     const [isChecked, setIsChecked] = useState<boolean>(false);
     const [isIndeterminate, setIsIndeterminate] = useState<boolean>(false);
-    let [selectedValue, setSelectedValue] = useState<string>("");
+    let [selectedValue, setSelectedValue] = useState<string>("orange");
     let [selectedBerriesValue, setSelectedBerriesValue] = useState<string>("");
 
     let fruits = [
         { label: "Apple", value: "apple" },
         { label: "Banana", value: "banana" },
-        { label: "Orange", value: "orange" },
+        { label: "Orange", value: "orange", disabled: true },
+        { label: "Mango", value: "mango" },
     ];
     let berries = [
         { label: "Blueberry", value: "blueberry" },
@@ -34,6 +34,10 @@ const App = () => {
         setSelectedValue(value);
     }, []);
 
+    const onCheckboxChange = useCallback((isChecked: boolean) => {
+        setIsChecked(isChecked);
+    }, []);
+
     const onChangeBerries = useCallback((value: string) => {
         setSelectedBerriesValue(value);
     }, []);
@@ -44,44 +48,28 @@ const App = () => {
 
     return (
         <div className="app">
-            <RadioGroup
-                options={fruits}
-                selected={selectedValue}
-                groupName="Fruits"
-                onChange={onChange}
-            />
-            <RadioGroup
-                options={berries}
-                selected={selectedBerriesValue}
-                groupName="Berries"
-                onChange={onChangeBerries}
-            />
-            {/* <Radio
-                label="apples"
-                value="apples"
-                checked={selectedValue}
-                groupName="Fruits"
-                onChange={onChange}
-            />
-            <Radio
-                value="oranges"
-                checked={selectedValue}
-                groupName="Fruits"
-                onChange={onChange}
-            /> */}
+            <div className="row">
+                <RadioGroup
+                    options={fruits}
+                    selected={selectedValue}
+                    groupName="Fruits"
+                    onChange={onChange}
+                />
+            </div>
+            <div className="row">
+                <RadioGroup
+                    options={berries}
+                    selected={selectedBerriesValue}
+                    groupName="Berries"
+                    onChange={onChangeBerries}
+                />
+            </div>
             <Button
                 label="Primary"
                 variant="primary"
                 type="text"
                 onClick={changeIndeterminateStatus}
             />
-            {/* <Checkbox
-                label="Checkbox"
-                checked={isChecked}
-                disabled={isDisabled}
-                indeterminate={isIndeterminate}
-                onChange={onChange}
-            /> */}
             <div>
                 <h4>Primary</h4>
                 <div className="row">
@@ -309,22 +297,22 @@ const App = () => {
                 </div>
             </div>
 
-            {/* <div>
+            <div>
                 <h4>Checkbox</h4>
                 <div className="row">
-                    <Checkbox checked={false} onChange={onCheckboxChange} />
+                    <Checkbox checked={isChecked} onChange={onCheckboxChange} />
                 </div>
                 <div className="row">
                     <Checkbox
                         label="Checkbox"
-                        checked
+                        checked={isChecked}
                         onChange={onCheckboxChange}
                     />
                 </div>
 
                 <div className="row">
                     <Checkbox
-                        checked={false}
+                        checked={isChecked}
                         onChange={onCheckboxChange}
                         disabled
                     />
@@ -332,12 +320,12 @@ const App = () => {
                 <div className="row">
                     <Checkbox
                         label="Checkbox"
-                        checked
+                        checked={isChecked}
                         onChange={onCheckboxChange}
                         disabled
                     />
                 </div>
-            </div> */}
+            </div>
         </div>
     );
 };

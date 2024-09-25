@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import "./button.css";
+import "./Button.css";
 import { memo } from "react";
 
 type ButtonVariantValuesType = "primary" | "secondary" | "outline" | "link";

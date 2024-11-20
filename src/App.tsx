@@ -4,6 +4,7 @@ import { Button } from "./components/Button/Button";
 import { Checkbox } from "./components/Checkbox/Checkbox";
 import { RadioGroup } from "./components/Radio/RadioGroup";
 import ArrowRightIcon from "../src/icons/arrowRight";
+import { Switch } from "./components/Switch/Switch";
 
 const App = () => {
     const arrowRightIcon = useMemo(() => <ArrowRightIcon />, []);
@@ -46,8 +47,18 @@ const App = () => {
         setIsIndeterminate(!isIndeterminate);
     }, [isIndeterminate]);
 
+    const onSwitchChange = useCallback((isChecked: boolean) => {
+        setIsChecked(isChecked);
+    }, []);
+
     return (
         <div className="app">
+            <Switch
+                checked={isChecked}
+                endLabel="endLabel"
+                label="Label"
+                onChange={onSwitchChange}
+            />
             <div className="row">
                 <RadioGroup
                     options={fruits}
@@ -297,7 +308,7 @@ const App = () => {
                 </div>
             </div>
 
-            <div>
+            {/* <div>
                 <h4>Checkbox</h4>
                 <div className="row">
                     <Checkbox checked={isChecked} onChange={onCheckboxChange} />
@@ -325,7 +336,7 @@ const App = () => {
                         disabled
                     />
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };

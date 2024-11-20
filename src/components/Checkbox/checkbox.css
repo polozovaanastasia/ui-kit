@@ -2,7 +2,7 @@
 
 .checkbox {
     display: inline-block;
-    font-size: 14px;
+    font-size: var(--main-text-size);
 }
 
 .checkbox-disabled .checkbox-control,

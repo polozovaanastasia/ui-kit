@@ -1,9 +1,9 @@
-@import url('../../assets/styles/variables.css');
+@import url("../../assets/styles/variables.css");
 
 .button {
     display: flex;
     align-items: center;
-    font-size: 14px;
+    font-size: var(--main-text-size);
     font-weight: 500;
     border: 2px solid transparent;
     box-sizing: border-box;
@@ -58,7 +58,6 @@
 
 .button-outline {
     border: 1px solid var(--border-color);
-
 }
 
 .button-outline:hover {

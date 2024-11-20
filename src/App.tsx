@@ -55,8 +55,8 @@ const App = () => {
         <div className="app">
             <Switch
                 checked={isChecked}
-                endLabel="endLabel"
-                label="Label"
+                // onLabel="onLabel"
+                offLabel="offLabel"
                 onChange={onSwitchChange}
             />
             <div className="row">

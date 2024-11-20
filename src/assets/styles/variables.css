@@ -1,4 +1,6 @@
-/* :root {
+:root {
+    --main-text-size: 14px;
+
     --main-color: #5e47d2;
     --secondary-color: #f7f5ff;
     --hover-color: #694df9;
@@ -9,8 +11,8 @@
     --disabled-border-color: #e0e0e0;
     --disabled-text-color: #c2c2c2;
     --disabled-background-color: #9e9e9e;
-} */
-
+}
+/*
 :root {
     --main-text-size: 14px;
 
@@ -24,4 +26,4 @@
     --disabled-border-color: #e0e0e0;
     --disabled-text-color: #c2c2c2;
     --disabled-background-color: #9e9e9e;
-}
+} */

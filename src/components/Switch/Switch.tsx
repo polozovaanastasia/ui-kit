@@ -16,7 +16,7 @@ export const Switch = ({
     disabled,
     onChange,
 }: SwitchPropsType) => {
-    const switchClass = classNames(
+    const switchClasses = classNames(
         "switch",
         { "switch-checked": checked },
         { "switch-disabled": disabled }
@@ -26,7 +26,7 @@ export const Switch = ({
         onChange(!checked);
     };
     return (
-        <div className={switchClass}>
+        <div className={switchClasses}>
             <label>
                 {onLabel && offLabel && <span>{onLabel}</span>}
                 <span className="switch-control">

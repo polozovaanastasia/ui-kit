@@ -5,6 +5,7 @@ import { Checkbox } from "./components/Checkbox/Checkbox";
 import { RadioGroup } from "./components/Radio/RadioGroup";
 import ArrowRightIcon from "../src/icons/arrowRight";
 import { Switch } from "./components/Switch/Switch";
+import { Select } from "./components/Select/Select";
 
 const App = () => {
     const arrowRightIcon = useMemo(() => <ArrowRightIcon />, []);
@@ -53,9 +54,11 @@ const App = () => {
 
     return (
         <div className="app">
+            <Select value={fruits[0]} options={fruits} />
+            <Select placeholder="Select a value" options={fruits} />
             <Switch
                 checked={isChecked}
-                // onLabel="onLabel"
+                onLabel="onLabel"
                 offLabel="offLabel"
                 onChange={onSwitchChange}
             />

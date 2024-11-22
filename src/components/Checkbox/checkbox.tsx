@@ -22,7 +22,7 @@ export const Checkbox = memo(
         const [isIndeterminate, setIsIndeterminate] =
             useState<boolean>(indeterminate);
 
-        const checkboxClass = classNames(
+        const checkboxClasses = classNames(
             "checkbox",
             `checkbox-${
                 isIndeterminate
@@ -49,7 +49,7 @@ export const Checkbox = memo(
         };
 
         return (
-            <div className={checkboxClass}>
+            <div className={checkboxClasses}>
                 <label>
                     <span className="checkbox-control">
                         <input

@@ -30,7 +30,7 @@ type ButtonPropsType =
 export const Button = memo(
     ({ label, variant, type, disabled, icon, onClick }: ButtonPropsType) => {
         console.log("Button rerender");
-        const buttonClass = classNames(
+        const buttonClasses = classNames(
             "button",
             `button-${variant}`,
             `button-${type ? type : "text"}`,
@@ -39,7 +39,7 @@ export const Button = memo(
 
         return (
             <button
-                className={buttonClass}
+                className={buttonClasses}
                 disabled={disabled}
                 onClick={onClick}
             >

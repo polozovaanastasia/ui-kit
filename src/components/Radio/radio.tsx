@@ -19,7 +19,7 @@ export const Radio = ({
     onChange,
 }: RadioPropsTypes) => {
     const isSelected = value === selected;
-    const radioClass = classNames(
+    const radioClasses = classNames(
         "radio",
         { "radio-selected": isSelected },
         { "radio-disabled": disabled }
@@ -29,7 +29,7 @@ export const Radio = ({
         onChange(value);
     };
     return (
-        <div className={radioClass}>
+        <div className={radioClasses}>
             <label>
                 <span className="radio-control">
                     <input

@@ -1,0 +1,51 @@
+.select-control {
+    display: flex;
+    justify-content: space-between;
+    /* padding: 6px 12px;
+    padding-right: 2px; */
+    border: 1px solid var(--disabled-border-color);
+    border-radius: 5px;
+    color: var(--disabled-background-color);
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+.select-control__selected-options {
+    width: 100%;
+    padding: 6px 12px;
+    padding-right: 2px;
+    /* border: 1px dotted black; */
+}
+
+.select-control__btn {
+    display: flex;
+}
+
+.btn {
+    width: 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    cursor: pointer;
+}
+
+.select-control__clear-btn {
+    background-image: url(./../../assets/icons/close.png);
+}
+
+.select-control__arrow-btn {
+    background-image: url(./../../assets/icons/selectArrow.png);
+}
+
+.select-control__arrow-btn::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    height: 20px;
+    width: 1px;
+    background-color: var(--disabled-background-color);
+}

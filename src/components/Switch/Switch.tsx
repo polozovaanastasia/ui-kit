@@ -5,6 +5,7 @@ type SwitchPropsType = {
     onLabel?: string;
     offLabel?: string;
     checked: boolean;
+    disabled?: boolean;
     onChange: (checked: boolean) => void;
 };
 
@@ -12,9 +13,14 @@ export const Switch = ({
     onLabel,
     offLabel,
     checked,
+    disabled,
     onChange,
 }: SwitchPropsType) => {
-    const switchClass = classNames("switch", { "switch-checked": checked });
+    const switchClass = classNames(
+        "switch",
+        { "switch-checked": checked },
+        { "switch-disabled": disabled }
+    );
 
     const onChangeHandler = () => {
         onChange(!checked);
@@ -28,6 +34,7 @@ export const Switch = ({
                         className="switch-input"
                         type="checkbox"
                         checked={checked}
+                        disabled={disabled}
                         onChange={onChangeHandler}
                     />
                 </span>

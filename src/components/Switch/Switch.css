@@ -65,6 +65,20 @@
     background-color: var(--main-color);
 }
 
+.switch-disabled .switch-control {
+    background-color: var(--disabled-text-color);
+    cursor: not-allowed;
+}
+
+.switch-disabled .switch-control:hover {
+    background-color: var(--disabled-text-color);
+    border-color: transparent;
+}
+
+.switch-disabled label {
+    cursor: default;
+}
+
 .switch-input {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);

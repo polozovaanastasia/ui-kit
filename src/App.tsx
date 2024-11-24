@@ -5,17 +5,9 @@ import { Checkbox } from "./components/Checkbox/Checkbox";
 import { RadioGroup } from "./components/Radio/RadioGroup";
 import ArrowRightIcon from "../src/icons/arrowRight";
 import { Switch } from "./components/Switch/Switch";
-import { Select } from "./components/Select/Select";
+import { Select, SelectOptionType } from "./components/Select/Select";
 
 const App = () => {
-    const arrowRightIcon = useMemo(() => <ArrowRightIcon />, []);
-
-    // const [isDisabled, setIsDisabled] = useState<boolean>(false);
-    const [isChecked, setIsChecked] = useState<boolean>(false);
-    const [isIndeterminate, setIsIndeterminate] = useState<boolean>(false);
-    let [selectedValue, setSelectedValue] = useState<string>("orange");
-    let [selectedBerriesValue, setSelectedBerriesValue] = useState<string>("");
-
     let fruits = [
         { label: "Apple", value: "apple" },
         { label: "Banana", value: "banana" },
@@ -27,6 +19,17 @@ const App = () => {
         { label: "Cherry", value: "cherry" },
         { label: "Strawberry", value: "strawberry" },
     ];
+    const arrowRightIcon = useMemo(() => <ArrowRightIcon />, []);
+
+    // const [isDisabled, setIsDisabled] = useState<boolean>(false);
+    const [isChecked, setIsChecked] = useState<boolean>(false);
+    const [isIndeterminate, setIsIndeterminate] = useState<boolean>(false);
+    let [selectedValue, setSelectedValue] = useState<string>("orange");
+    let [selectedFruits, setSelectedFruits] = useState<
+        SelectOptionType | undefined
+    >(fruits[1]);
+    let [selectedBerriesValue, setSelectedBerriesValue] =
+        useState<string>("blueberry");
 
     const onButtonClick = useCallback(() => {
         console.log("onButtonClick");
@@ -52,10 +55,19 @@ const App = () => {
         setIsChecked(isChecked);
     }, []);
 
+    const onSelectChange = (value: SelectOptionType | undefined) => {
+        setSelectedFruits(value);
+    };
+
     return (
         <div className="app">
-            <Select value={fruits[0]} options={fruits} />
-            <Select placeholder="Select a value" options={fruits} />
+            <Select
+                selectedOption={selectedFruits}
+                options={fruits}
+                // size={2}
+                onChange={onSelectChange}
+            />
+            {/* <Select placeholder="Select a value" options={fruits} /> */}
             <Switch
                 checked={isChecked}
                 onLabel="onLabel"

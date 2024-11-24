@@ -16,11 +16,10 @@ export const Switch = ({
     disabled,
     onChange,
 }: SwitchPropsType) => {
-    const switchClasses = classNames(
-        "switch",
-        { "switch-checked": checked },
-        { "switch-disabled": disabled }
-    );
+    const switchClasses = classNames("switch", {
+        "switch-checked": checked,
+        "switch-disabled": disabled,
+    });
 
     const onChangeHandler = () => {
         onChange(!checked);

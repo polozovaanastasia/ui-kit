@@ -7,27 +7,41 @@ import ArrowRightIcon from "../src/icons/arrowRight";
 import { Switch } from "./components/Switch/Switch";
 import { Select, SelectOptionType } from "./components/Select/Select";
 
+let fruits = [
+    { label: "Apple", value: "apple" },
+    { label: "Banana", value: "banana" },
+    { label: "Orange", value: "orange", disabled: true },
+    { label: "Mango", value: "mango" },
+];
+let fruits2 = [
+    { label: "Apple", value: "apple" },
+    { label: "Banana", value: "banana" },
+    { label: "Orange", value: "orange" },
+    { label: "Mango", value: "mango" },
+    { label: "Fig", value: "fig" },
+    { label: "Peach", value: "peach" },
+    { label: "Papaya", value: "papaya" },
+    { label: "Guava", value: "guava" },
+    { label: "Kiwi", value: "kiwi" },
+];
+let berries = [
+    { label: "Blueberry", value: "blueberry" },
+    { label: "Cherry", value: "cherry" },
+    { label: "Strawberry", value: "strawberry" },
+];
 const App = () => {
-    let fruits = [
-        { label: "Apple", value: "apple" },
-        { label: "Banana", value: "banana" },
-        { label: "Orange", value: "orange", disabled: true },
-        { label: "Mango", value: "mango" },
-    ];
-    let berries = [
-        { label: "Blueberry", value: "blueberry" },
-        { label: "Cherry", value: "cherry" },
-        { label: "Strawberry", value: "strawberry" },
-    ];
     const arrowRightIcon = useMemo(() => <ArrowRightIcon />, []);
 
     // const [isDisabled, setIsDisabled] = useState<boolean>(false);
     const [isChecked, setIsChecked] = useState<boolean>(false);
     const [isIndeterminate, setIsIndeterminate] = useState<boolean>(false);
     let [selectedValue, setSelectedValue] = useState<string>("orange");
-    let [selectedFruits, setSelectedFruits] = useState<
+    let [selectedFruits, setSelectedFruits] = useState<SelectOptionType[]>([]);
+
+    let [selectedBerries, setSelectedBerries] = useState<
         SelectOptionType | undefined
-    >(fruits[1]);
+    >();
+
     let [selectedBerriesValue, setSelectedBerriesValue] =
         useState<string>("blueberry");
 
@@ -55,17 +69,28 @@ const App = () => {
         setIsChecked(isChecked);
     }, []);
 
-    const onSelectChange = (value: SelectOptionType | undefined) => {
-        setSelectedFruits(value);
+    const handleSelectChange = (option: Array<SelectOptionType>) => {
+        setSelectedFruits(option);
+    };
+    const handleSelectSingleChange = (option: SelectOptionType | undefined) => {
+        setSelectedBerries(option);
     };
 
     return (
         <div className="app">
             <Select
                 selectedOption={selectedFruits}
-                options={fruits}
-                // size={2}
-                onChange={onSelectChange}
+                options={fruits2}
+                placeholder="Выбирай фрукты"
+                multiple
+                disabled
+                onChange={handleSelectChange}
+            />
+            <Select
+                selectedOption={selectedBerries}
+                placeholder="Выбирай ягоду"
+                options={berries}
+                onChange={handleSelectSingleChange}
             />
             {/* <Select placeholder="Select a value" options={fruits} /> */}
             <Switch

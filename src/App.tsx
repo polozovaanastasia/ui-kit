@@ -36,7 +36,9 @@ const App = () => {
     const [isChecked, setIsChecked] = useState<boolean>(false);
     const [isIndeterminate, setIsIndeterminate] = useState<boolean>(false);
     let [selectedValue, setSelectedValue] = useState<string>("orange");
-    let [selectedFruits, setSelectedFruits] = useState<SelectOptionType[]>([]);
+    let [selectedFruits, setSelectedFruits] = useState<SelectOptionType[]>([
+        fruits2[0],
+    ]);
 
     let [selectedBerries, setSelectedBerries] = useState<
         SelectOptionType | undefined

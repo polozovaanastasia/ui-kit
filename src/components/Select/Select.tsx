@@ -1,7 +1,6 @@
 import classNames from "classnames";
 import "./Select.css";
 import { useState } from "react";
-import { spawn } from "child_process";
 import { Checkbox } from "../Checkbox/Checkbox";
 
 export type SelectOptionType = {
@@ -156,7 +155,6 @@ export const Select = ({
                                     className="select-option_label"
                                     onClick={(e) => {
                                         onChangeHandler(option);
-                                        // setIsOpen(false);
                                     }}
                                 >
                                     {option.label}
@@ -167,7 +165,6 @@ export const Select = ({
                                     checked={isSelected}
                                     onChange={(e) => {
                                         onChangeHandler(option);
-                                        // setIsOpen(false);
                                     }}
                                 />
                             )}

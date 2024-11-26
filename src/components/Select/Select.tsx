@@ -1,6 +1,8 @@
 import classNames from "classnames";
 import "./Select.css";
 import { useState } from "react";
+import { spawn } from "child_process";
+import { Checkbox } from "../Checkbox/Checkbox";
 
 export type SelectOptionType = {
     value: string;
@@ -21,6 +23,7 @@ type MultipleSelectPropsType = {
 
 type SelectPropsType = {
     options: Array<SelectOptionType>;
+    optionType?: "checkbox" | "default";
     size?: number;
     placeholder?: string;
     disabled?: boolean;
@@ -30,6 +33,7 @@ export const Select = ({
     multiple,
     selectedOption,
     options,
+    optionType = "default",
     size = options.length,
     placeholder,
     disabled,
@@ -137,26 +141,37 @@ export const Select = ({
             </div>
             <ul className={selectOptionsClasses}>
                 {options.map((option, i) => {
+                    const isSelected = multiple
+                        ? selectedOption.includes(option)
+                        : selectedOption === option;
+
                     const optionClasses = classNames("select-option", {
-                        "select-option_is-selected": multiple
-                            ? selectedOption.includes(option)
-                            : selectedOption === option,
+                        "select-option_is-selected": isSelected,
                     });
 
                     return (
-                        i < size && (
-                            <li
-                                key={option.value}
-                                className={optionClasses}
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    onChangeHandler(option);
-                                    setIsOpen(false);
-                                }}
-                            >
-                                {option.label}
-                            </li>
-                        )
+                        <li key={option.value} className={optionClasses}>
+                            {optionType === "default" ? (
+                                <span
+                                    className="select-option_label"
+                                    onClick={(e) => {
+                                        onChangeHandler(option);
+                                        // setIsOpen(false);
+                                    }}
+                                >
+                                    {option.label}
+                                </span>
+                            ) : (
+                                <Checkbox
+                                    label={option.label}
+                                    checked={isSelected}
+                                    onChange={(e) => {
+                                        onChangeHandler(option);
+                                        // setIsOpen(false);
+                                    }}
+                                />
+                            )}
+                        </li>
                     );
                 })}
             </ul>

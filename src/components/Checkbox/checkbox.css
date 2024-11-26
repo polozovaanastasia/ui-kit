@@ -17,6 +17,7 @@
     box-sizing: border-box;
     border-radius: 4px;
     background-position: center;
+    background-color: white;
     transition: 0.3s;
 }
 

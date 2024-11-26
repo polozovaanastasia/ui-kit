@@ -121,8 +121,17 @@
 }
 
 .select-option {
-    padding: 6px 12px;
     list-style-type: none;
+}
+
+.select-option .checkbox,
+.select-option .select-option_label {
+    width: 100%;
+    padding: 6px 12px;
+}
+
+.select-option .select-option_label {
+    display: inline-block;
 }
 
 .select-option:hover {
@@ -141,6 +150,7 @@
     background-color: var(--disabled-border-color);
     border-radius: 4px;
 }
+
 .select_single .selected-option__label {
     padding: 2px 10px;
 }

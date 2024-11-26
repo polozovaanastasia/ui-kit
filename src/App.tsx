@@ -83,7 +83,7 @@ const App = () => {
                 options={fruits2}
                 placeholder="Выбирай фрукты"
                 multiple
-                disabled
+                optionType="checkbox"
                 onChange={handleSelectChange}
             />
             <Select
